@@ -4,20 +4,23 @@
     "password": "Password",
     "database": "music_tour",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": 5433
   },
   "test": {
     "username": "postgres",
     "password": "Password",
     "database": "music_tour_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port":5433
   },
   "production": {
     "username": "postgres",
     "password": "Password",
     "database": "music_tour_production",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port":5433
   }
 }
