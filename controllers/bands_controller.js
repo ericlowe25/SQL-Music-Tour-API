@@ -26,8 +26,9 @@ bands.get('/:id', async (req, res) => {
             where: { band_id: req.params.id }
         })
         res.status(200).json(foundBand)
-    } catch (error) {
-        res.status(500).json(error)
+    } 
+    catch (err) {
+        res.status(500).json(err)
     }
 })
 
