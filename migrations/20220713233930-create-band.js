@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require("../models");
+
   module.exports = {
     up: async (queryInterface, Sequelize) => {
       await queryInterface.createTable('bands', {
@@ -19,10 +22,12 @@
         available_start_time: {
           type: Sequelize.DATE,
           allowNull: false,
+          defualtValue: sequelize.NOW
         },
         end_time: {
           type: Sequelize.DATE,
           allowNull: false,
+          defualtValue: sequelize.NOW
         }
       })
     },
