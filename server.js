@@ -17,13 +17,13 @@ app.use(express.urlencoded({ extended: false }))
 // } catch(err) {
 //     console.log(`Unable to connect to PG: ${err}`) 
 // }
-
-
-
-// LISTEN
-app.listen(process.env.PORT, () => {
-    console.log(`🎸 Rockin' on port: ${process.env.PORT}`)
+// ROOT
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: 'Welcome to the Tour API'
+    })
 })
+
 
 // CONTROLLERS 
 const bandsController = require('./controllers/bands_controller')
@@ -36,9 +36,7 @@ const stagesController = require('./controllers/stages_controller')
 app.use('/stages.', stagesController)
 
 
-// ROOT
-app.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'Welcome to the Tour API'
-    })
+// LISTEN
+app.listen(process.env.PORT, () => {
+    console.log(`🎸 Rockin' on port: ${process.env.PORT}`)
 })

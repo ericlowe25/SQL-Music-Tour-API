@@ -9,50 +9,47 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-      static associate({ Stage, StageEvent, MeetGreet, SetTime}) {
-          // stages
-          Event.belongsToMany(Stage, {
-              foreignKey: "event_id",
-              as: "stages", 
-              through: StageEvent
-          })
-          // meet greet
-          Event.hasMany(MeetGreet, {
-            foreignKey: "event_id",
-            as: "meet_greets"
-          })
-          // set times
-          Event.hasMany(SetTime, {
-            foreignKey: "event_id",
-            as: "set_times"
-          })
-      }
-  }
-  
+     static associate({Stage, StageEvent, MeetGreet, SetTime}) {
+      // stage association 
+      Event.belongsToMany(Stage, {
+        foreignKey: 'event_id',
+        as: 'stages',
+        through: StageEvent
+      })
+      //meet greet association
+      Event.hasMany(MeetGreet, {
+        foreignKey: 'event_id',
+        as: 'meet_greets'
+      })
+      //set time association
+      Event.hasMany(SetTime, {
+        foreignKey: 'event_id',
+        as:"set_times"
+      })
     }
+  }
   Event.init({
-    event_id:{
-        type:DataTypes.INTEGER,
+    event_id: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    },
-    name:{
-        type:DataTypes.STRING,
+      },
+      name: {
+        type: DataTypes.STRING,
         allowNull: false
-    },    
-    date:{ 
-        type:DataTypes.DATE,
+      },
+      date: {
+        type: DataTypes.DATE,
         allowNull: false
-
-    },    
-    start_time:{
-        type:DataTypes.DATE,
+      },
+      start_time: {
+        type: DataTypes.DATE,
         allowNull: false
-    },    
-    end_time:{ 
-        type:DataTypes.DATE,
+      },
+      end_time: {
+        type: DataTypes.DATE,
         allowNull: false
-    },    
+      }
   }, {
     sequelize,
     modelName: 'Event',
@@ -60,3 +57,4 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
   return Event;
+}

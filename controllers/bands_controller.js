@@ -1,7 +1,7 @@
 // DEPENDENCIES
 const bands = require('express').Router()
 const db = require('../models')
-const { Band, MeetGreet, Event, setTime} = db
+const { Band, MeetGreet, Event, SetTime} = db
 const {Op} = require('sequelize')
 const meetgreet = require('../models/meetgreet')
 
@@ -36,7 +36,7 @@ bands.get('/:name', async (req, res) => {
                 }
             },
             {
-                model: setTime,
+                model: SetTime,
                     as: 'set_times',
                     include:{
                         model: Event,
@@ -68,13 +68,13 @@ bands.post('/', async (req, res) => {
 // UPDATE A BAND
 bands.put('/:id', async (req, res) => {
     try {
-        const updatedBands = await Band.update(req.body, {
+        const updatedBand = await Band.update(req.body, {
             where: {
                 band_id: req.params.id
             }
         })
         res.status(200).json({
-            message: `Successfully updated ${updatedBands} band(s)`
+            message: `Successfully updated ${updatedBand} band(s)`
         })
     } catch(err) {
         res.status(500).json(err)
@@ -84,20 +84,16 @@ bands.put('/:id', async (req, res) => {
 // DELETE A BAND
 bands.delete('/:id', async (req, res) => {
     try {
-        const deletedBands = await Band.destroy({
-            where: {
-                band_id: req.params.id
-            }
+        const deletedBand = await Band.destroy({
+            where: {band_id: req.params.id}
         })
         res.status(200).json({
-            message: `Successfully deleted ${deletedBands} band(s)`
+            message: `Successfully deleted ${deletedBand} band(s)`
         })
-    } catch(err) {
+    } 
+    catch(err) {
         res.status(500).json(err)
     }
 })
-
-
-
 // EXPORT
 module.exports = bands
